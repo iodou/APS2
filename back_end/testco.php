@@ -1,11 +1,10 @@
 <?php
     include("connexion.php");
-
+    // Expressions régulière affain de tester si le mot de passe contient: Une majuscule, une minuscule, un chiffre, un caractère spécial et 8 caractères au minimum
     function isValidMDP($mdp)
     {
-      return preg_match('/^(?=.* ?[A-Z])(?=.* ?[a-z])(?=.* ?[0-9])(?=.* ?[;§!@?]).{12,}$/', $mdp); 
+      return preg_match('/^(?=.* ?[A-Z])(?=.* ?[a-z])(?=.* ?[0-9])(?=.* ?[;§!@?]).{8,}$/', $mdp); 
     }
-
     if(isset($_POST['id']) && (isset($_POST['mdp'])) && isValidMDP($_POST['mdp']))
     {
         $testmdpid = $connexion->prepare('SELECT mdp,identifiant from admin');
@@ -26,5 +25,4 @@
             }
         }
     }
-    
 ?>
